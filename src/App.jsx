@@ -1,10 +1,13 @@
+import React from "react";
+import CreateTask from "./components/CreateTask";
 
 function App() {
-
   return (
-   <h1>Wellcome to Tidal Task!</h1>
-   
-  )
+    <div>
+      <h1>Welcome to Tidal Task!</h1>
+      <CreateTask />
+    </div>
+  );
 }
 
-export default App
+export default App;

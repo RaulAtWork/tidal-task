@@ -1,0 +1,50 @@
+.timetable {
+  display: grid;
+  grid-template-columns: 5ch auto;
+  grid-template-rows: repeat(24, 20px);
+  row-gap: 10px;
+  max-height: 500px;
+  overflow-y: scroll;
+  position: relative;
+}
+
+.timetable-hour,
+.timetable-hour-half {
+  align-self: center;
+}
+
+.timetable-hour-half {
+  color: grey;
+  font-size: 0.75em;
+  margin-left: auto;
+  margin-right: 4px;
+}
+
+.timetable-separator,
+.timetable-separator-half {
+  height: 1px;
+  align-self: center;
+}
+
+.timetable-separator {
+  background-color: white;
+}
+.timetable-separator-half {
+  background-color: grey;
+}
+
+.timetable-ignore {
+  position: absolute;
+  top: 10px;
+  left: 7ch;
+}
+
+.timetable-task{
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
+    z-index: 10; /*Always on top to apply the blur */
+    border-radius: 5px;
+    border: 1px solid white;
+    position: absolute;
+    width: 600px;
+}

@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { getTimeInFormatHHMM, addMinutesToDate } from "../utils/DateHelper";
+import { Task } from "../entity/Task";
+import { TaskContext } from "../TaskContext";
 
 const DEFAULT_TIME_INTERVAL = 30;
 
 function CreateTask() {
+
+  const {addTask} = useContext(TaskContext)
+
   let currentTime = getTimeInFormatHHMM(new Date());
   let afterIntervalTime = getTimeInFormatHHMM(
     addMinutesToDate(new Date(), DEFAULT_TIME_INTERVAL)
@@ -26,7 +31,14 @@ function CreateTask() {
     return true;
   };
 
-  const onSubmit = (data) => console.log(data);
+
+  function onSubmit(data){
+    // process data
+    let newTask = new Task(data.title, data.startTime, data.endTime)
+    // add it to the context
+    addTask(newTask)
+  }
+
   return (
     <section>
       <h2>Task Creation</h2>
@@ -62,7 +74,7 @@ function CreateTask() {
         />
         {errors.endTime?.message && <p role="alert">{errors.endTime.message}</p>}
 
-        <input type="submit" />
+        <input value="Create!" type="submit"/>
       </form>
     </section>
   );

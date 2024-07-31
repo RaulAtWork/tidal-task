@@ -10,9 +10,14 @@ const TaskContextProvider = ({children}) => {
         setTasks([...tasks, newTask])
     }
 
+    function clearTasks(){
+        setTasks([])
+    }
+
     const contextValues= {
         tasks, 
-        addTask
+        addTask,
+        clearTasks
     }
 
     return (

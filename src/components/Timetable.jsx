@@ -14,13 +14,7 @@ function TimeTable({ taskList }) {
       <div className="timetable">
         <div className="timetable-ignore">
           {taskList.map((t, index) => (
-            <div
-              key={t.title + index}
-              className="timetable-task"
-              style={{ top: t.getStartTimeInMinutes() + "px", height: t.getDurationInMinutes() + "px" }}
-            >
-              {t.title}
-            </div>
+            <TimeTableTask task={t} key={t.title + "-" + index} />
           ))}
         </div>
         <Hour hour="00" />
@@ -64,5 +58,22 @@ function Hour({ hour, scrollToRef }) {
       <span className="timetable-hour-half">{hour}:30</span>
       <span className="timetable-separator-half" />
     </>
+  );
+}
+
+function TimeTableTask({ task }) {
+  return (
+    <div
+      className="timetable-task"
+      style={{
+        top: task.getStartTimeInMinutes() + "px",
+        height: task.getDurationInMinutes() + "px",
+      }}
+    >
+      <p><b>{task.title}</b></p>
+      <p>
+        {task.startTime} - {task.endTime}
+      </p>
+    </div>
   );
 }

@@ -1,14 +1,19 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
-import { getTimeInFormatHHMM, addMinutesToDate } from "../utils/DateHelper";
+import {
+  getTimeInFormatHHMM,
+  addMinutesToDate,
+  timeframeIsBooked,
+  calculateTimeDifferenceInMinutes,
+} from "../utils/DateHelper";
 import { Task } from "../entity/Task";
 import { TaskContext } from "../TaskContext";
 
 const DEFAULT_TIME_INTERVAL = 30;
 
 function CreateTask() {
-
-  const {addTask} = useContext(TaskContext)
+  const { addTask, tasks } = useContext(TaskContext);
+  const [ successMessage, setSuccessMessage ] = useState("");
 
   let currentTime = getTimeInFormatHHMM(new Date());
   let afterIntervalTime = getTimeInFormatHHMM(
@@ -22,21 +27,27 @@ function CreateTask() {
     watch,
   } = useForm();
 
-  const startTime = watch("startTime");
+  const startTime = watch("startTime", currentTime);
 
   const validateEndTime = (value) => {
     if (value <= startTime) {
-      return "End time must be after the start time";
+      return "End time must be after the start time.";
+    }
+    if (timeframeIsBooked(startTime, value, tasks)) {
+      return "A tasks was already created within the timeframe.";
+    }
+    if (calculateTimeDifferenceInMinutes(startTime, value) < 30) {
+      return "Minimun duration of a task is 30 minutes.";
     }
     return true;
   };
 
-
-  function onSubmit(data){
+  function onSubmit(data) {
     // process data
-    let newTask = new Task(data.title, data.startTime, data.endTime)
+    let newTask = new Task(data.title, data.startTime, data.endTime);
     // add it to the context
-    addTask(newTask)
+    addTask(newTask);
+    setSuccessMessage("Task Created!");
   }
 
   return (
@@ -62,7 +73,9 @@ function CreateTask() {
           {...register("startTime", { required: "Field is required" })}
           type="time"
         />
-        {errors.startTime?.message && <p role="alert">{errors.startTime.message}</p>}
+        {errors.startTime?.message && (
+          <p role="alert">{errors.startTime.message}</p>
+        )}
         <label>End Time</label>
         <input
           defaultValue={afterIntervalTime}
@@ -72,10 +85,13 @@ function CreateTask() {
           })}
           type="time"
         />
-        {errors.endTime?.message && <p role="alert">{errors.endTime.message}</p>}
+        {errors.endTime?.message && (
+          <p role="alert">{errors.endTime.message}</p>
+        )}
 
-        <input value="Create!" type="submit"/>
+        <input value="Create!" type="submit" />
       </form>
+      {successMessage && <p>{successMessage}</p>}
     </section>
   );
 }

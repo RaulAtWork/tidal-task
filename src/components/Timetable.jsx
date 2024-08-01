@@ -1,6 +1,8 @@
 import "../styles/custom-style/timetable.css";
-import React, { useEffect, useRef } from "react";
-import { HHMMtoMinutes } from "../utils/DateHelper";
+import React, { useContext, useEffect, useRef } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { TaskContext } from "../TaskContext";
 
 function TimeTable({ taskList }) {
   const scrollToRef = useRef(null); //used to start at the item where the scrollToRef is
@@ -62,6 +64,7 @@ function Hour({ hour, scrollToRef }) {
 }
 
 function TimeTableTask({ task }) {
+  const { deleteTask } = useContext(TaskContext);
   return (
     <div
       className="timetable-task"
@@ -70,7 +73,14 @@ function TimeTableTask({ task }) {
         height: task.getDurationInMinutes() + "px",
       }}
     >
-      <p><b>{task.title}</b></p>
+      <p>
+        <b>{task.title}</b>{" "}
+        <FontAwesomeIcon
+          icon={faXmark}
+          className="icon icon-red selectable"
+          onClick={() => deleteTask(task.id)}
+        />
+      </p>
       <p>
         {task.startTime} - {task.endTime}
       </p>

@@ -1,0 +1,11 @@
+.icon {
+  height: 1rem;
+}
+
+.icon.icon-red {
+  color: red;
+}
+
+.icon.selectable:hover{
+    cursor: pointer;
+}

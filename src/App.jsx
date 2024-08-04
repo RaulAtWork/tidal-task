@@ -1,11 +1,12 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import CreateTask from "./components/CreateTask";
 import { TaskContext } from "./TaskContext";
 import TimeTable from "./components/Timetable";
 import ClearTasks from "./components/ClearTasks";
+import useLocalStorage from "./hooks/useLocalStorage";
 
 function App() {
-  const { tasks } = useContext(TaskContext);
+  const { tasks, setTasks } = useContext(TaskContext);
 
   return (
     <div>

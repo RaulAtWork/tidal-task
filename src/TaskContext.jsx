@@ -6,12 +6,12 @@ export const TaskContext = React.createContext();
 const TaskContextProvider = ({ children }) => {
   const { loadFromLocalStorage, saveToLocalStorage } = useLocalStorage();
 
-  const [tasks, setTasks] = useState(()=>{
+  const [tasks, setTasks] = useState(() => {
     // load initial tasks if any
     let localData = loadFromLocalStorage();
-    console.log("Loading local data", localData);
+    //console.log("Loading local data", localData);
     if (!localData) return;
-    return localData.taskList
+    return localData.taskList;
   });
 
   useEffect(() => {
@@ -29,7 +29,7 @@ const TaskContextProvider = ({ children }) => {
   function deleteTask(uuid) {
     setTasks(
       tasks.filter((element) => {
-        element.id !== uuid;
+        return element.id !== uuid;
       })
     );
   }

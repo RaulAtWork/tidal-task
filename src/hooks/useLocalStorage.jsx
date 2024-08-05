@@ -5,7 +5,7 @@ const LOCAL_STORAGE_KEY = "TIDAL_TASK";
 function useLocalStorage() {
   function saveToLocalStorage(tasks) {
     let dataToSave = new LocalData(tasks);
-    console.log("Save lo local data", dataToSave)
+    //console.log("Save lo local data", dataToSave)
     localStorage.setItem(LOCAL_STORAGE_KEY, dataToSave.getJSON());
   }
 

@@ -13,7 +13,8 @@ function useLocalStorage() {
     let data = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
     if (!data) return; // return if no data was retrieved
     // TODO: IF IT IS THE SAME DAY, JUST CLEAR STORAGE
-    return data;
+
+    return new LocalData(data.taskList);
   }
 
   function clearLocalStorage() {

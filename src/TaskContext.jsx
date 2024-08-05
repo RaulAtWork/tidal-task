@@ -1,26 +1,22 @@
 import React, { useEffect, useState } from "react";
 import useLocalStorage from "./hooks/useLocalStorage";
-import { Task } from "./entity/Task";
 
 export const TaskContext = React.createContext();
 
 const TaskContextProvider = ({ children }) => {
   const { loadFromLocalStorage, saveToLocalStorage } = useLocalStorage();
 
-  const [tasks, setTasks] = useState([]);
-  const [initialLoad, setInitialLoad] = useState(true)
-
-  useEffect(() => {
+  const [tasks, setTasks] = useState(()=>{
+    // load initial tasks if any
     let localData = loadFromLocalStorage();
     console.log("Loading local data", localData);
     if (!localData) return;
-    for (const t of localData.taskList) {
-      addTask(new Task(t.title, t.startTime, t.endTime));
-    }
-    setInitialLoad(false)
-  }, []);
+    return localData.taskList
+  });
 
-
+  useEffect(() => {
+    saveToLocalStorage(tasks);
+  }, [tasks]);
 
   function addTask(newTask) {
     setTasks([...tasks, newTask]);

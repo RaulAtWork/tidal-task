@@ -1,20 +1,33 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import CreateTask from "./components/CreateTask";
 import { TaskContext } from "./TaskContext";
 import TimeTable from "./components/Timetable";
 import ClearTasks from "./components/ClearTasks";
-import useLocalStorage from "./hooks/useLocalStorage";
+import CurrentTime from "./components/CurrentTime";
 
 function App() {
-  const { tasks, setTasks } = useContext(TaskContext);
+  const { tasks } = useContext(TaskContext);
 
   return (
-    <div>
-      <h1>Welcome to Tidal Task!</h1>
-      <ClearTasks />
-      <CreateTask />
-      <TimeTable taskList={tasks} />
-    </div>
+    <>
+      <header>
+        <span>Welcome to Tidal Task!</span>
+      </header>
+      <main className="main-container">
+        <div className="side-content">
+          <div className="main-card">
+            <CurrentTime/>
+          </div>
+          <div className="main-card">
+            <ClearTasks />
+            <CreateTask />
+          </div>
+        </div>
+        <div className="main-card main-content">
+          <TimeTable taskList={tasks} />
+        </div>
+      </main>
+    </>
   );
 }
 

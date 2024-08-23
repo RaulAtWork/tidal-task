@@ -1,0 +1,5 @@
+header{
+    border-bottom: 1px solid black;
+    height: 65px;
+    background-color: var(--background-body);
+}

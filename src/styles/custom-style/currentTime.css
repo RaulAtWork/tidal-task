@@ -1,0 +1,14 @@
+.currenttime-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+.currenttime-timestmap{
+    font-size: 4rem;
+    font-weight: bold;
+}
+.currenttime-date{
+
+}

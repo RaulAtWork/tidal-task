@@ -1,7 +1,7 @@
 import "../styles/custom-style/timetable.css";
 import React, { useContext, useEffect, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faXmark, faPen } from "@fortawesome/free-solid-svg-icons";
 import { TaskContext } from "../TaskContext";
 
 function TimeTable({ taskList }) {
@@ -74,14 +74,13 @@ function TimeTableTask({ task }) {
       }}
     >
       <p>
-        <b>{task.title}</b>{" "}
+        <FontAwesomeIcon icon={faPen} className="icon icon-blue selectable" />
         <FontAwesomeIcon
           icon={faXmark}
           className="icon icon-red selectable"
           onClick={() => deleteTask(task.id)}
         />
-      </p>
-      <p>
+        <b>{task.title}</b>
         {task.startTime} - {task.endTime}
       </p>
     </div>

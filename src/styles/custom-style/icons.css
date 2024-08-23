@@ -1,9 +1,14 @@
 .icon {
   height: 1rem;
+  font-size: 1rem;
 }
 
 .icon.icon-red {
   color: red;
+}
+
+.icon.icon-blue{
+  color: blue;
 }
 
 .icon.selectable:hover{

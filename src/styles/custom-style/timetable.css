@@ -46,5 +46,8 @@
     border: 1px solid white;
     position: absolute;
     width: 600px;
-    padding: 5px;
+    padding: 2px 5px;
+    overflow: hidden;
+    display: flex;
 }
+

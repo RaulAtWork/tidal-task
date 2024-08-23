@@ -5,15 +5,25 @@ body {
   background-color: black;
 }
 
-#root{
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main{
+  display: flex;
+  justify-content: center;
 }
 
 .main-card {
   background-color: var(--background-body);
   border-radius: 5px;
+  padding: 10px;
+}
+
+.main-card.bottom{
+  margin-top: auto;
 }
 
 .side-content {
@@ -24,14 +34,24 @@ body {
   margin-right: 20px;
 }
 .main-content {
-    display: flex;
-    flex-direction: column;
-    flex : 1;
-    max-height: calc(100vh - 145px); /*65 + 40*2*/
-    padding: 15px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  max-height: calc(100vh - 145px); /*65 + 40*2*/
+  padding: 15px;
 }
 .main-container {
   padding: 40px;
   display: flex;
   flex: 1;
+  max-width: 1200px;
+}
+
+.flex-center {
+  display: flex;
+  align-self: center;
+}
+
+.two-column-flex {
+  display: flex;
 }

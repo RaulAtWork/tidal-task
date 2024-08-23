@@ -1,0 +1,7 @@
+button.full-width, input.full-width{
+    width: 100%;
+}
+
+button.no-margin{
+    margin: 0;
+}

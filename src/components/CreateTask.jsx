@@ -13,7 +13,7 @@ const DEFAULT_TIME_INTERVAL = 30;
 
 function CreateTask() {
   const { addTask, tasks } = useContext(TaskContext);
-  const [ successMessage, setSuccessMessage ] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 
   let currentTime = getTimeInFormatHHMM(new Date());
   let afterIntervalTime = getTimeInFormatHHMM(
@@ -52,7 +52,7 @@ function CreateTask() {
 
   return (
     <section>
-      <h2>Task Creation</h2>
+      <h2 className="no-margin-top">Create a new Task</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <label>Title</label>
         <input
@@ -66,30 +66,35 @@ function CreateTask() {
         />
 
         {errors.title?.message && <p role="alert">{errors.title.message}</p>}
+        <div className="two-column-flex">
+          <div className="time-input">
+            <label>Start Time</label>
+            <input
+              defaultValue={currentTime}
+              {...register("startTime", { required: "Field is required" })}
+              type="time"
+            />
+            {errors.startTime?.message && (
+              <p role="alert">{errors.startTime.message}</p>
+            )}
+          </div>
+          <div className="time-input">
+            <label>End Time</label>
+            <input
+              defaultValue={afterIntervalTime}
+              {...register("endTime", {
+                required: "Field is required",
+                validate: validateEndTime,
+              })}
+              type="time"
+            />
+            {errors.endTime?.message && (
+              <p role="alert">{errors.endTime.message}</p>
+            )}
+          </div>
+        </div>
 
-        <label>Start Time</label>
-        <input
-          defaultValue={currentTime}
-          {...register("startTime", { required: "Field is required" })}
-          type="time"
-        />
-        {errors.startTime?.message && (
-          <p role="alert">{errors.startTime.message}</p>
-        )}
-        <label>End Time</label>
-        <input
-          defaultValue={afterIntervalTime}
-          {...register("endTime", {
-            required: "Field is required",
-            validate: validateEndTime,
-          })}
-          type="time"
-        />
-        {errors.endTime?.message && (
-          <p role="alert">{errors.endTime.message}</p>
-        )}
-
-        <input value="Create!" type="submit" />
+        <input value="Create!" type="submit" className="full-width flex-center" />
       </form>
       {successMessage && <p>{successMessage}</p>}
     </section>

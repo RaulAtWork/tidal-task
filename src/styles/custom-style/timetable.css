@@ -4,6 +4,7 @@
   grid-template-rows: repeat(24, 20px);
   row-gap: 10px;
   overflow-y: scroll;
+  overflow-x: hidden;
   position: relative;
 }
 
@@ -73,4 +74,13 @@
   display: flex;
   gap: inherit;
   min-width: 50px;
+}
+
+.timetable-current-time{
+  width: 800px;
+  height: 3px;
+  background-color: red;
+  position: absolute;
+  z-index: 20;
+  left: -20px;
 }

@@ -1,20 +1,31 @@
 import "../styles/custom-style/timetable.css";
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark, faPen } from "@fortawesome/free-solid-svg-icons";
 import { TaskContext } from "../TaskContext";
+import { getTimeInFormatHHMM, HHMMtoMinutes } from "../utils/DateHelper";
 
 function TimeTable({ taskList }) {
   const scrollToRef = useRef(null); //used to start at the item where the scrollToRef is
+  const [currentTimeinMinutes, setCurrentTimeInMinutes] = useState(HHMMtoMinutes( getTimeInFormatHHMM(new Date())))
 
   useEffect(() => {
     scrollToRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
   }, []);
 
+  useEffect(()=>{
+    const interval = setTimeout(()=>{
+      const timeInMinutes = HHMMtoMinutes( getTimeInFormatHHMM(new Date()))
+      setCurrentTimeInMinutes(timeInMinutes)
+    }, 60*1000) //each minute
+    return clearInterval(interval)
+  }, [])
+
   return (
     <>
       <div className="timetable">
         <div className="timetable-ignore">
+          <div className="timetable-current-time" style={{top: currentTimeinMinutes}}/>
           {taskList.map((t, index) => (
             <TimeTableTask task={t} key={t.title + "-" + index} />
           ))}

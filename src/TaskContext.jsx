@@ -10,7 +10,7 @@ const TaskContextProvider = ({ children }) => {
     // load initial tasks if any
     let localData = loadFromLocalStorage();
     //console.log("Loading local data", localData);
-    if (!localData) return;
+    if (!localData) return [];
     return localData.taskList;
   });
 

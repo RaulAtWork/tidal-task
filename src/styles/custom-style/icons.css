@@ -1,5 +1,6 @@
 .icon {
   height: 1rem;
+  width: 1rem;
   font-size: 1rem;
 }
 
@@ -13,4 +14,11 @@
 
 .icon.selectable:hover{
     cursor: pointer;
+}
+
+.icon-action{
+background-color: white;
+color: black;
+border-radius: 5px;
+padding: 2px;
 }

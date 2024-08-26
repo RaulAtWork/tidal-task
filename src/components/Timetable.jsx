@@ -73,16 +73,25 @@ function TimeTableTask({ task }) {
         height: task.getDurationInMinutes() + "px",
       }}
     >
-      <p>
-        <FontAwesomeIcon icon={faPen} className="icon icon-blue selectable" />
-        <FontAwesomeIcon
-          icon={faXmark}
-          className="icon icon-red selectable"
-          onClick={() => deleteTask(task.id)}
-        />
+      <span>
         <b>{task.title}</b>
-        {task.startTime} - {task.endTime}
-      </p>
+      </span>
+      <span className="timetask-right">
+        <span>
+          {task.startTime} - {task.endTime}
+        </span>
+        <div className="timetask-actions">
+          <FontAwesomeIcon
+            icon={faPen}
+            className="icon icon-action selectable"
+          />
+          <FontAwesomeIcon
+            icon={faXmark}
+            className="icon icon-action selectable"
+            onClick={() => deleteTask(task.id)}
+          />
+        </div>
+      </span>
     </div>
   );
 }

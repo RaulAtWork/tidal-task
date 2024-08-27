@@ -63,17 +63,27 @@
   align-items: center;
 }
 
-.timetable-task:hover .timetask-actions > *{
-  display: block;
+
+.timetable-task:hover .timetask-actions {
+  transform: translateX(0); /* Moves the actions into view on hover */
 }
-.timetask-actions > *{
-  display: none;
+
+.timetask-actions > * {
+  opacity: 0; /* Start hidden */
+  transition: opacity 0.3s ease; /* Smooth transition for opacity */
+}
+
+.timetable-task:hover .timetask-actions > * {
+  opacity: 1; /* Fade in on hover */
 }
 
 .timetask-actions{
   display: flex;
   gap: inherit;
   min-width: 50px;
+  overflow: hidden; /* Hides the elements that are out of bounds */
+  transition: transform 0.3s ease; /* Smooth transition for the swipe effect */
+  transform: translateX(+100%); /* Starts off-screen */
 }
 
 .timetable-current-time{

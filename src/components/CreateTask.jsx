@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm} from "react-hook-form";
 import {
   getTimeInFormatHHMM,
   addMinutesToDate,
@@ -25,6 +25,7 @@ function CreateTask() {
     handleSubmit,
     formState: { errors },
     watch,
+    reset
   } = useForm();
 
   const startTime = watch("startTime", currentTime);
@@ -48,6 +49,7 @@ function CreateTask() {
     // add it to the context
     addTask(newTask);
     setSuccessMessage("Task Created!");
+    reset()
   }
 
   return (

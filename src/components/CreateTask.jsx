@@ -56,7 +56,7 @@ function CreateTask() {
     <section>
       <h2 className="no-margin-top">Create a new Task</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <label>Title</label>
+        <label>Task</label>
         <input
           {...register("title", {
             required: "Field is required",

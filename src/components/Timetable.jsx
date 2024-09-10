@@ -18,8 +18,9 @@ function TimeTable({ taskList }) {
   useEffect(() => {
     const interval = setInterval(() => {
       const timeInMinutes = HHMMtoMinutes(getTimeInFormatHHMM(new Date()));
+
       setCurrentTimeInMinutes(timeInMinutes);
-    }, 60 * 1000); //each minute
+    }, 20 * 1000); //each 20 sec
 
     // Cleanup function to clear the timeout
     return ()=>  clearInterval(interval);
@@ -31,7 +32,7 @@ function TimeTable({ taskList }) {
         <div className="timetable-ignore">
           <div
             className="timetable-current-time"
-            style={{ top: currentTimeinMinutes }}
+            style={{ top: currentTimeinMinutes+"px"}}
           />
           {taskList.map((t, index) => (
             <TimeTableTask task={t} key={t.title + "-" + index} />

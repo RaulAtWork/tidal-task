@@ -14,3 +14,7 @@ form {
 input{
 	margin-right: 0;
 }
+
+input[type="time"]::-webkit-calendar-picker-indicator{
+  filter: invert(100%)
+}

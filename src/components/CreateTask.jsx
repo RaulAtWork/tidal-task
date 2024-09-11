@@ -11,7 +11,7 @@ import { TaskContext } from "../TaskContext";
 
 const DEFAULT_TIME_INTERVAL = 30;
 
-function CreateTask() {
+function CreateTask({onSubmit}) {
   const { addTask, tasks } = useContext(TaskContext);
   const [successMessage, setSuccessMessage] = useState("");
 
@@ -43,19 +43,19 @@ function CreateTask() {
     return true;
   };
 
-  function onSubmit(data) {
+  function performSubmit(data) {
     // process data
     let newTask = new Task(data.title, data.startTime, data.endTime);
     // add it to the context
     addTask(newTask);
     setSuccessMessage("Task Created!");
+    if (onSubmit) onSubmit()
     reset()
   }
 
   return (
     <section>
-      <h2 className="no-margin-top">Create a new Task</h2>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(performSubmit)}>
         <label>Task</label>
         <input
           {...register("title", {

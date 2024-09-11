@@ -1,0 +1,42 @@
+body.modal-open {
+  overflow: hidden; /* Prevent scrolling when modal is open */
+}
+
+.modal-overlay {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 25; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
+  backdrop-filter: blur(5px); /* Blurring effect */
+}
+
+.modal-overlay.active {
+  display: block; /* Show when active */
+}
+
+.modal-dialog {
+  z-index: 30;
+  margin: 200px auto;
+  padding: 20px;
+  border: 1px solid #888;
+}
+
+.dialog-header {
+  border-bottom: 1px solid hsl(0, 0%, 20%);
+  padding-bottom: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.close-dialog{
+    margin-left: auto;
+}
+
+.modal-content{
+    padding-top: 10px;
+}
